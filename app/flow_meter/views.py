@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.template import loader
 
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
@@ -6,10 +7,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 # from .forms import ProductForm
 
 
-def index(request):
+def index(request) -> HttpResponse:
     # products = Product.objects.order_by("-id")
     # context = {"title": "Главная страница сайта", "products": products}
     # return render(request, "templates/index.html", context)
+    # template = loader.get_template( "templates/index.html")
+    # return HttpResponse(template.render())
     return render(request, "templates/index.html")
     
 

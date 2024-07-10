@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "flow_meter.apps.Flow_meterConfig",
+    "flow_meter",
 ]
 
 MIDDLEWARE = [
