@@ -1,0 +1,17 @@
+{% extends "templates/base.html" %} {% load static %} {% block title %} Добавить
+товар {% endblock %} {%block content%}
+<h1>Добавить товар</h1>
+<br />
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">{{form.titl.label_tag}} {{form.name}}</div>
+  <br />
+  <div class="form-group">{{form.titl.label_tag}} {{form.description}}</div>
+  <br />
+  <div class="form-group">{{form.titl.label_tag}} {{form.quantity}}</div>
+  <div class="form-group">{{form.titl.label_tag}} {{form.price}}</div>
+  <br />
+  <button type="submit" class="btn btn-success">Добавить товар</button>
+  <span>{{error}}</span>
+</form>
+{% endblock %}
