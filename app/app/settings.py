@@ -58,8 +58,16 @@ TEMPLATE_DIRS = [
 
 TEMPLATES = [
     {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "BACKEND": "django.template.backends.jinja2.Jinja2",
         "DIRS": TEMPLATE_DIRS,
+        "APP_DIRS": True,
+        # "OPTIONS": {
+        #     "environment": "myproject.jinja2.Environment",
+        # },
+    },
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
