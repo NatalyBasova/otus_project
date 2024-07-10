@@ -61,9 +61,9 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.jinja2.Jinja2",
         "DIRS": TEMPLATE_DIRS,
         "APP_DIRS": True,
-        # "OPTIONS": {
-        #     "environment": "myproject.jinja2.Environment",
-        # },
+        "OPTIONS": {
+            "environment": "flow_meter.jinja2.environment",
+        },
     },
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",

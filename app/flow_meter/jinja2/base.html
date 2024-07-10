@@ -14,13 +14,13 @@
       crossorigin="anonymous"
     />
     <link
-      href="{{ url_for('static', filename='css/style.css') }}"
+      href="{{ static('css/style.css') }}"
       rel="stylesheet"
     />
   </head>
   <body class="d-flex flex-column h-100">
     <header id="pageHeader" class="position-absolute w-100 bg-white">
-      {% include "navbar.html" %}
+      {# {% include "navbar.html" %} #}
     </header>
     <main class="flex-shrink-0">{% block content %} {% endblock %}</main>
 

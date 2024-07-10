@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>All products</title>
+<meta name="description" content="Get all products" />
+{% endblock %}
+
+{% block content %}
+<ul>
+  {% for product in products %}
+  <li>{{ product.name }} {{ product.quantity }} {{ product.price }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

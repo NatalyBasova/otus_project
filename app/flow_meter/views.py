@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.template import loader
+
 
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
-# from .models import Product
+from .models import Product
+
 # from .forms import ProductForm
 
 
@@ -13,8 +14,17 @@ def index(request) -> HttpResponse:
     # return render(request, "templates/index.html", context)
     # template = loader.get_template( "templates/index.html")
     # return HttpResponse(template.render())
-    return render(request, "templates/index.html")
-    
+    return render(request, "jinja2/index.html")
+
+
+def all_products(request) -> HttpResponse:
+    products = Product.objects.all().values()
+
+    return render(
+        request=request,
+        template_name="jinja2/all_products.html",
+        context={"products": products},
+    )
 
 
 # def add_product(request):
