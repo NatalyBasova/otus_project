@@ -53,7 +53,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "app.urls"
 TEMPLATE_DIRS = [
-    os.path.join(BASE_DIR, "flow_meter/"),
+    os.path.join(BASE_DIR, "flow_meter/jinja2/"),
 ]
 
 TEMPLATES = [

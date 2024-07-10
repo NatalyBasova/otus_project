@@ -14,7 +14,7 @@ def index(request) -> HttpResponse:
     # return render(request, "templates/index.html", context)
     # template = loader.get_template( "templates/index.html")
     # return HttpResponse(template.render())
-    return render(request, "jinja2/index.html")
+    return render(request, "index.html")
 
 
 def all_products(request) -> HttpResponse:
@@ -22,7 +22,7 @@ def all_products(request) -> HttpResponse:
 
     return render(
         request=request,
-        template_name="jinja2/all_products.html",
+        template_name="all_products.html",
         context={"products": products},
     )
 
