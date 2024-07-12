@@ -1,14 +1,14 @@
-{% extends "templates/main.html" %}
+{% extends "base.html" %} 
 
-{% load static %}
-{% block title %}
-Страница про нас
+{% block meta %}
+<title>Про нас</title>
+<meta name="description" content="About page" />
 {% endblock %}
 
 {% block content %}
 <br>
 <h1> Про нас </h1>
-<img src="{% static 'img/romashka.ipg' %}" widht="200px" heiht="200px" alt="Расходомер">
+<img src="{{ static('img/wh.png') }}" width="20px" height="20px" alt="Расходомер">
 
 
 <div class="container">

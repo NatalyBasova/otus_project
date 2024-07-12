@@ -42,5 +42,5 @@ def all_products(request) -> HttpResponse:
 #         return render(request, "templates/add_product.html", context)
 
 
-# def about(request):
-#     return render(request, "tempates/about.html")
+def about(request):
+    return render(request, "about.html")

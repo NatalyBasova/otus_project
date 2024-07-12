@@ -1,9 +1,12 @@
-<<!DOCTYPE html>
-<html>
-<body>
+{% extends "base.html" %} 
 
+{% block meta %}
+<title>Home</title>
+<meta name="description" content="Main page" />
+{% endblock %}
+
+{% block content %}
 <h1>Hello World!</h1>
 <p>Welcome to my first Django project!</p>
 
-</body>
-</html>
+{% endblock %}
