@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>{{ product.name }}</title>
+<meta name="description" content="About {{ product.name }}" />
+{% endblock %}
+
+{% block content %}
+<p>Название: {{ product.name }} Количество: {{ product.quantity }}</p>
+<p>Описание: {{ product.description }}</p>
+<p>Цена: {{ product.price }}</p>
+<p>Категория: {{ product.category }}</p>
+{% endblock %}
