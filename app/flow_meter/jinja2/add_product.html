@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Добавление товара</title>
+<meta name="description" content="Добавление товара" />
+{% endblock %}
+
+{% block content %}
+<h1>Добавить товар</h1>
+
+<form method="post">
+    <div class="form-group">
+        {{ form.title.label_tag }}
+        {{ form.name }}
+    </div><br>
+    <div class="form-group">
+        {{ form.title.label_tag }}
+        {{ form.description }}
+    </div><br>
+    <div class="form-group">
+        {{ form.title.label_tag }}
+        {{ form.quantity }}
+    </div><br>
+    <div class="form-group">
+        {{ form.title.label_tag }}
+        {{ form.price }}
+    </div><br>
+    <button type="submit" class="btn btn-success">Добавить товар</button>
+</form>
+{% endblock %}
