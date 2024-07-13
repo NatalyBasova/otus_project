@@ -41,8 +41,9 @@ def add_product(request: HttpRequest) -> HttpResponse:
             return redirect("products")
         else:
             error = "Форма была неверной"
-        form = ProductForm()
-        context = {"form": form, "error": error}
+
+    form = ProductForm()
+    context = {"form": form, "error": error}
 
     return render(request=request, template_name="add_product.html", context=context)
 
