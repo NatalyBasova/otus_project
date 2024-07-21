@@ -47,19 +47,20 @@ def product_delete(request: HttpRequest, id: int) -> HttpResponse:
 
 
 def product_update(request: HttpRequest, id: int) -> HttpResponse:
-    
+
+    product = Product.objects.get(id=id)
     error = ""
-    
+
     if request.method == "POST":
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
             return redirect("products")
         else:
             error = "Форма была неверной"
+    else:
+        form = ProductForm(instance=product)
 
-    product = Product.objects.get(id=id)
-    form = ProductForm(instance=product)
     context = {"form": form, "error": error}
 
     return render(request=request, template_name="product_update.html", context=context)
