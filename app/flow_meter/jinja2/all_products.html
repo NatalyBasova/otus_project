@@ -17,6 +17,7 @@
     <td><a href="details/{{ product.id }}">{{ product.name }}</a></td>
     <td>{{ product.quantity }}</td>
     <td>{{ product.price }}</td>
+    <td><a href="delete/{{ product.id }}">Удалить</a></td>
    </tr>
   {% endfor %}
 </table>
