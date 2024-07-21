@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Измненеие товара</title>
+<meta name="description" content="Изменение товара" />
+{% endblock %}
+
+{% block content %}
+<h1>Изменить товар</h1>
+
+<form method="post">
+    {{ csrf_input }}
+    <div class="form-group">
+        {{ form.name }}
+    </div><br>
+    <div class="form-group">
+        {{ form.description }}
+    </div><br>
+    <div class="form-group">
+        {{ form.quantity }}
+    </div><br>
+    <div class="form-group">
+        {# {{ form.title.label_tag }} #}
+        {{ form.price }}
+    </div><br>
+    <button type="submit" class="btn btn-danger">Изменить товар</button>
+    <a href="/products" class="btn btn-success">Оставить без изменений</a>
+</form>
+{% endblock %}

@@ -3,6 +3,8 @@ from setuptools import setup, find_packages
 # Installation requirements needed absolutely for the program to run
 install_requires = [
     "Django==5.0.*",
+    "Jinja2==3.1.*",
+    "django-bootstrap-v5==1.0.*",
 ]
 
 # Additional feature sets and their requirements

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>All products</title>
+<meta name="description" content="Get all products" />
+{% endblock %}
+
+{% block content %}
+<table>
+  <tr>
+    <th>Название</th>
+    <th>Количество</th> 
+    <th>Цена</th>
+  </tr>
+  {% for product in products %}
+   <tr>
+    <td><a href="details/{{ product.id }}">{{ product.name }}</a></td>
+    <td>{{ product.quantity }}</td>
+    <td>{{ product.price }}</td>
+    <td><a href="update/{{ product.id }}" class="btn btn-warning">Редактировать</a></td>
+    <td><a href="delete/{{ product.id }}" class="btn btn-danger">Удалить</a></td>
+   </tr>
+  {% endfor %}
+</table>
+
+<a href="add">Добавить товар</a>
+{% endblock %}

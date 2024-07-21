@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "flow_meter",
 ]
 
 MIDDLEWARE = [
@@ -50,8 +52,19 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "app.urls"
+TEMPLATE_DIRS = [
+    os.path.join(BASE_DIR, "flow_meter/jinja2/"),
+]
 
 TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.jinja2.Jinja2",
+        "DIRS": TEMPLATE_DIRS,
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "environment": "flow_meter.jinja2.environment",
+        },
+    },
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [],
@@ -116,6 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+# STATIC_ROOT = os.path.join(BASE_DIR, "flow_meter/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

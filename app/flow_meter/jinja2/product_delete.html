@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Удаление товара</title>
+<meta name="description" content="Удаление товара" />
+{% endblock %}
+
+{% block content %}
+<h1>Удалить товар</h1>
+
+<p>Название: {{ product.name }} Количество: {{ product.quantity }}</p>
+<p>Описание: {{ product.description }}</p>
+<p>Цена: {{ product.price }}</p>
+<p>Категория: {{ product.category }}</p>
+
+<p>Вы хотите удалить товар?</p>
+
+<form action="" method="post">
+    {{ csrf_input }}
+    <button type="submit" class="btn btn-danger">Да</button>
+    <a href="/products" class="btn btn-success">Нет</a>
+</form>
+{% endblock %}
