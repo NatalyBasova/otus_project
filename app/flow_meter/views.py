@@ -35,6 +35,10 @@ def product_details(request: HttpRequest, id: int) -> HttpResponse:
 def product_delete(request: HttpRequest, id: int) -> HttpResponse:
     product = Product.objects.get(id=id)
 
+    if request.method == "POST":
+        product.delete()
+        return redirect("products")
+
     return render(
         request=request,
         template_name="product_delete.html",
