@@ -46,6 +46,10 @@ def product_delete(request: HttpRequest, id: int) -> HttpResponse:
     )
 
 
+def product_update(request: HttpRequest, id: int) -> HttpResponse:
+    pass
+
+
 def product_add(request: HttpRequest) -> HttpResponse:
     error = ""
     if request.method == "POST":
