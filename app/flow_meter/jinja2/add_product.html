@@ -9,7 +9,7 @@
 <h1>Добавить товар</h1>
 
 <form method="post">
-    {% csrf_token %}
+    {{ csrf_input }}
     <div class="form-group">
         {{ form.name }}
     </div><br>
