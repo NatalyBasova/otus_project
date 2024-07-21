@@ -8,11 +8,11 @@ class TestProduct(TestCase):
             name="pen",
             quantity=12,
         )
-        
-    def test_product_created(self):
-        product=Product.objects.get(name="pen")
-        self.assertEqual(product.name, "pen")
 
     def tearDown(self):
         product = Product.objects.get(name="pen")
         product.delete()
+
+    def test_product_created(self):
+        product = Product.objects.get(name="pen")
+        self.assertEqual(product.name, "pen")
