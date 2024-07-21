@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block meta %}
-<title>Добавление товара</title>
-<meta name="description" content="Добавление товара" />
+<title>Измненеие товара</title>
+<meta name="description" content="Изменение товара" />
 {% endblock %}
 
 {% block content %}
-<h1>Добавить товар</h1>
+<h1>Изменить товар</h1>
 
 <form method="post">
     {{ csrf_input }}
@@ -23,6 +23,7 @@
         {# {{ form.title.label_tag }} #}
         {{ form.price }}
     </div><br>
-    <button type="submit" class="btn btn-success">Добавить товар</button>
+    <button type="submit" class="btn btn-danger">Изменить товар</button>
+    <a href="/products" class="btn btn-success">Оставить без изменений</a>
 </form>
 {% endblock %}
