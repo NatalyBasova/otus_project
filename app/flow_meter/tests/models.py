@@ -10,4 +10,5 @@ class TestProduct(TestCase):
         )
 
     def tearDown(self):
-        print("Я выполняюсь после каждого теста")
+        self.product = Product.objects.get(name="pen")
+        self.product.delete()
