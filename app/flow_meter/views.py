@@ -32,6 +32,16 @@ def product_details(request: HttpRequest, id: int) -> HttpResponse:
     )
 
 
+def product_delete(request: HttpRequest, id: int) -> HttpResponse:
+    product = Product.objects.get(id=id)
+
+    return render(
+        request=request,
+        template_name="product_delete.html",
+        context={"product": product},
+    )
+
+
 def add_product(request: HttpRequest) -> HttpResponse:
     error = ""
     if request.method == "POST":
