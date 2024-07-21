@@ -17,7 +17,8 @@
     <td><a href="details/{{ product.id }}">{{ product.name }}</a></td>
     <td>{{ product.quantity }}</td>
     <td>{{ product.price }}</td>
-    <td><a href="delete/{{ product.id }}">Удалить</a></td>
+    <td><a href="update/{{ product.id }}" class="btn btn-warning">Редактировать</a></td>
+    <td><a href="delete/{{ product.id }}" class="btn btn-danger">Удалить</a></td>
    </tr>
   {% endfor %}
 </table>
