@@ -46,7 +46,7 @@ def product_delete(request: HttpRequest, id: int) -> HttpResponse:
     )
 
 
-def add_product(request: HttpRequest) -> HttpResponse:
+def product_add(request: HttpRequest) -> HttpResponse:
     error = ""
     if request.method == "POST":
         form = ProductForm(request.POST)
@@ -59,7 +59,7 @@ def add_product(request: HttpRequest) -> HttpResponse:
     form = ProductForm()
     context = {"form": form, "error": error}
 
-    return render(request=request, template_name="add_product.html", context=context)
+    return render(request=request, template_name="product_add.html", context=context)
 
 
 def about(request: HttpRequest) -> HttpResponse:
