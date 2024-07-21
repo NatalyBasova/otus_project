@@ -3,13 +3,13 @@ from django.db import models
 
 class Product(models.Model):
     name = models.CharField(
-        max_length=100, verbose_name="Название товара", null=True, blank=True
+        max_length=100, verbose_name="Название товара", null=True, blank=False
     )
     description = models.TextField(
         verbose_name="Описание товара", null=True, blank=True
     )
     quantity = models.IntegerField(
-        verbose_name="Количество товара", null=True, blank=True
+        verbose_name="Количество товара", null=True, blank=False
     )
     price = models.DecimalField(
         max_digits=10,
