@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Добавление категории</title>
+<meta name="description" content="Добавление категории" />
+{% endblock %}
+
+{% block content %}
+<h1>Добавить категорию</h1>
+
+<form method="post">
+    {{ csrf_input }}
+    <div class="form-group">
+        {{ form.name }}
+    </div><br>
+    <button type="submit" class="btn btn-success">Добавить категорию</button>
+</form>
+{% endblock %}

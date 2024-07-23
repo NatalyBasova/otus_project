@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Изменение категории</title>
+<meta name="description" content="Изменение категории />
+{% endblock %}
+
+{% block content %}
+<h1>Изменить категорию</h1>
+
+<form method="post">
+    {{ csrf_input }}
+    <div class="form-group">
+        {{ form.name }}
+    </div><br>
+
+    <button type="submit" class="btn btn-danger">Изменить категорию</button>
+    <a href="/categories" class="btn btn-success">Оставить без изменений</a>
+</form>
+{% endblock %}

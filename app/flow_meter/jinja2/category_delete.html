@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Удаление категории</title>
+<meta name="description" content="Удаление категории" />
+{% endblock %}
+
+{% block content %}
+<h1>Удалить категорию</h1>
+
+<p>Название: {{ category.name }} 
+
+<p>Вы хотите удалить категорию?</p>
+
+<form action="" method="post">
+    {{ csrf_input }}
+    <button type="submit" class="btn btn-outline-success">Да</button>
+    <a href="/categories" class="btn btn-outline-danger">Нет</a>
+</form>
+{% endblock %}
