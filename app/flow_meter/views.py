@@ -96,14 +96,14 @@ def all_categories(request: HttpRequest) -> HttpResponse:
     )
 
 
-# def category_details(request: HttpRequest, id: int) -> HttpResponse:
-#     product = Product.objects.get(id=id)
+def category_details(request: HttpRequest, id: int) -> HttpResponse:
+    category = Category.objects.get(id=id)
 
-#     return render(
-#         request=request,
-#         template_name="category_details.html",
-#         context={"product": product},
-#     )
+    return render(
+        request=request,
+        template_name="category_details.html",
+        context={"category": category},
+    )
 
 
 # def category_delete(request: HttpRequest, id: int) -> HttpResponse:
