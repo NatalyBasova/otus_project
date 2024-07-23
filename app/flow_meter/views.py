@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 
-from .models import Product
+from .models import Product, Category
 from .forms import ProductForm
 
 
@@ -84,3 +84,75 @@ def product_add(request: HttpRequest) -> HttpResponse:
 
 def about(request: HttpRequest) -> HttpResponse:
     return render(request, "about.html")
+
+
+def all_categories(request: HttpRequest) -> HttpResponse:
+    categories = Category.objects.all().values()
+
+    return render(
+        request=request,
+        template_name="all_categories.html",
+        context={"categories": categories},
+    )
+
+
+def category_details(request: HttpRequest, id: int) -> HttpResponse:
+    product = Product.objects.get(id=id)
+
+    return render(
+        request=request,
+        template_name="category_details.html",
+        context={"product": product},
+    )
+
+
+def category_delete(request: HttpRequest, id: int) -> HttpResponse:
+    product = Product.objects.get(id=id)
+
+    if request.method == "POST":
+        product.delete()
+        return redirect("products")
+
+    return render(
+        request=request,
+        template_name="category_delete.html",
+        context={"product": product},
+    )
+
+
+def category_update(request: HttpRequest, id: int) -> HttpResponse:
+
+    product = Product.objects.get(id=id)
+    error = ""
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect("products")
+        else:
+            error = "Форма была неверной"
+    else:
+        form = ProductForm(instance=product)
+
+    context = {"form": form, "error": error}
+
+    return render(
+        request=request, template_name="category_update.html", context=context
+    )
+
+
+def category_add(request: HttpRequest) -> HttpResponse:
+    error = ""
+    if request.method == "POST":
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("products")
+        else:
+            error = "Форма была неверной"
+
+    form = ProductForm()
+    context = {"form": form, "error": error}
+
+    return render(request=request, template_name="category_add.html", context=context)

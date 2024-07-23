@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>All categories</title>
+<meta name="description" content="Get all categories" />
+{% endblock %}
+
+{% block content %}
+<table>
+  <tr>
+    <th>Название</th>
+    <th>Метки</th> 
+   
+  </tr>
+  {% for category in categories %}
+   <tr>
+    <td><a href="details/{{ category.id }}">{{ category.name }}</a></td>
+    <td><a href="update/{{ category.id }}" class="btn btn-warning">Редактировать</a></td>
+    <td><a href="delete/{{ category.id }}" class="btn btn-danger">Удалить</a></td>
+   </tr>
+  {% endfor %}
+</table>
+
+<a href="add">Добавить категорию</a>
+{% endblock %}
