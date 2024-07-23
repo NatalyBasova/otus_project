@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 
 from .models import Product, Category
-from .forms import ProductForm
+from .forms import ProductForm, CategoryForm
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -96,63 +96,63 @@ def all_categories(request: HttpRequest) -> HttpResponse:
     )
 
 
-def category_details(request: HttpRequest, id: int) -> HttpResponse:
-    product = Product.objects.get(id=id)
+# def category_details(request: HttpRequest, id: int) -> HttpResponse:
+#     product = Product.objects.get(id=id)
 
-    return render(
-        request=request,
-        template_name="category_details.html",
-        context={"product": product},
-    )
-
-
-def category_delete(request: HttpRequest, id: int) -> HttpResponse:
-    product = Product.objects.get(id=id)
-
-    if request.method == "POST":
-        product.delete()
-        return redirect("products")
-
-    return render(
-        request=request,
-        template_name="category_delete.html",
-        context={"product": product},
-    )
+#     return render(
+#         request=request,
+#         template_name="category_details.html",
+#         context={"product": product},
+#     )
 
 
-def category_update(request: HttpRequest, id: int) -> HttpResponse:
+# def category_delete(request: HttpRequest, id: int) -> HttpResponse:
+#     product = Product.objects.get(id=id)
 
-    product = Product.objects.get(id=id)
-    error = ""
+#     if request.method == "POST":
+#         product.delete()
+#         return redirect("products")
 
-    if request.method == "POST":
-        form = ProductForm(request.POST, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect("products")
-        else:
-            error = "Форма была неверной"
-    else:
-        form = ProductForm(instance=product)
+#     return render(
+#         request=request,
+#         template_name="category_delete.html",
+#         context={"product": product},
+#     )
 
-    context = {"form": form, "error": error}
 
-    return render(
-        request=request, template_name="category_update.html", context=context
-    )
+# def category_update(request: HttpRequest, id: int) -> HttpResponse:
+
+#     product = Product.objects.get(id=id)
+#     error = ""
+
+#     if request.method == "POST":
+#         form = ProductForm(request.POST, instance=product)
+#         if form.is_valid():
+#             form.save()
+#             return redirect("products")
+#         else:
+#             error = "Форма была неверной"
+#     else:
+#         form = ProductForm(instance=product)
+
+#     context = {"form": form, "error": error}
+
+#     return render(
+#         request=request, template_name="category_update.html", context=context
+#     )
 
 
 def category_add(request: HttpRequest) -> HttpResponse:
     error = ""
     if request.method == "POST":
-        form = ProductForm(request.POST)
+        form = CategoryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("products")
+            return redirect("categories")
         else:
             error = "Форма была неверной"
 
-    form = ProductForm()
+    form = CategoryForm()
     context = {"form": form, "error": error}
 
     return render(request=request, template_name="category_add.html", context=context)
