@@ -4,8 +4,8 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 
-from .models import Product
-from .forms import ProductForm
+from .models import Product, Category
+from .forms import ProductForm, CategoryForm
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -84,3 +84,75 @@ def product_add(request: HttpRequest) -> HttpResponse:
 
 def about(request: HttpRequest) -> HttpResponse:
     return render(request, "about.html")
+
+
+def all_categories(request: HttpRequest) -> HttpResponse:
+    categories = Category.objects.all().values()
+
+    return render(
+        request=request,
+        template_name="all_categories.html",
+        context={"categories": categories},
+    )
+
+
+def category_details(request: HttpRequest, id: int) -> HttpResponse:
+    category = Category.objects.get(id=id)
+
+    return render(
+        request=request,
+        template_name="category_details.html",
+        context={"category": category},
+    )
+
+
+def category_delete(request: HttpRequest, id: int) -> HttpResponse:
+    category = Category.objects.get(id=id)
+
+    if request.method == "POST":
+        category.delete()
+        return redirect("categories")
+
+    return render(
+        request=request,
+        template_name="category_delete.html",
+        context={"category": category},
+    )
+
+
+def category_update(request: HttpRequest, id: int) -> HttpResponse:
+
+    category = Category.objects.get(id=id)
+    error = ""
+
+    if request.method == "POST":
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect("categories")
+        else:
+            error = "Форма была неверной"
+    else:
+        form = CategoryForm(instance=category)
+
+    context = {"form": form, "error": error}
+
+    return render(
+        request=request, template_name="category_update.html", context=context
+    )
+
+
+def category_add(request: HttpRequest) -> HttpResponse:
+    error = ""
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("categories")
+        else:
+            error = "Форма была неверной"
+
+    form = CategoryForm()
+    context = {"form": form, "error": error}
+
+    return render(request=request, template_name="category_add.html", context=context)

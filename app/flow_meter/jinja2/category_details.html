@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>{{ category.name }}</title>
+<meta name="description" content="About {{ category.name }}" />
+{% endblock %}
+
+{% block content %}
+<p>Название: {{ category.name }}</p>
+
+<p><a href="/categories">Назад к категориям</a></p>
+{% endblock %}

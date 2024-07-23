@@ -1,4 +1,4 @@
-from .models import Product
+from .models import Product, Category
 from django.forms import ModelForm, TextInput, Textarea
 
 
@@ -18,5 +18,16 @@ class ProductForm(ModelForm):
             ),
             "price": TextInput(
                 attrs={"class": "form-control", "placeholder": "Введите цену товара"}
+            ),
+        }
+
+
+class CategoryForm(ModelForm):
+    class Meta:
+        model = Category
+        fields = ["name"]
+        widgets = {
+            "name": TextInput(
+                attrs={"class": "form-control", "placeholder": "Введите категорию"}
             ),
         }
