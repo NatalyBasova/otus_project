@@ -106,18 +106,18 @@ def category_details(request: HttpRequest, id: int) -> HttpResponse:
     )
 
 
-# def category_delete(request: HttpRequest, id: int) -> HttpResponse:
-#     product = Product.objects.get(id=id)
+def category_delete(request: HttpRequest, id: int) -> HttpResponse:
+    category = Category.objects.get(id=id)
 
-#     if request.method == "POST":
-#         product.delete()
-#         return redirect("products")
+    if request.method == "POST":
+        category.delete()
+        return redirect("categories")
 
-#     return render(
-#         request=request,
-#         template_name="category_delete.html",
-#         context={"product": product},
-#     )
+    return render(
+        request=request,
+        template_name="category_delete.html",
+        context={"category": category},
+    )
 
 
 def category_update(request: HttpRequest, id: int) -> HttpResponse:
