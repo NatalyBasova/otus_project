@@ -120,26 +120,26 @@ def category_details(request: HttpRequest, id: int) -> HttpResponse:
 #     )
 
 
-# def category_update(request: HttpRequest, id: int) -> HttpResponse:
+def category_update(request: HttpRequest, id: int) -> HttpResponse:
 
-#     product = Product.objects.get(id=id)
-#     error = ""
+    category = Category.objects.get(id=id)
+    error = ""
 
-#     if request.method == "POST":
-#         form = ProductForm(request.POST, instance=product)
-#         if form.is_valid():
-#             form.save()
-#             return redirect("products")
-#         else:
-#             error = "Форма была неверной"
-#     else:
-#         form = ProductForm(instance=product)
+    if request.method == "POST":
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect("categories")
+        else:
+            error = "Форма была неверной"
+    else:
+        form = CategoryForm(instance=category)
 
-#     context = {"form": form, "error": error}
+    context = {"form": form, "error": error}
 
-#     return render(
-#         request=request, template_name="category_update.html", context=context
-#     )
+    return render(
+        request=request, template_name="category_update.html", context=context
+    )
 
 
 def category_add(request: HttpRequest) -> HttpResponse:
