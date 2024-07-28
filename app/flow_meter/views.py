@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
-from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
+from django.http import HttpResponse, HttpResponseRedirect, HttpRequest, Http404
+from django.core.paginator import InvalidPage, Paginator
 from django.views.generic import (
     ListView,
     CreateView,
@@ -20,7 +21,9 @@ def index(request: HttpRequest) -> HttpResponse:
 
 class ProductListView(ListView):
     model = Product
-
+    paginate_by = 10
+    
+  
 
 class ProductDetailView(DetailView):
     model = Product
