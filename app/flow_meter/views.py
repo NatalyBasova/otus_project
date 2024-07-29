@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect
 
-
-# Create your views here.
-from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
+from django.http import HttpResponse, HttpResponseRedirect, HttpRequest, Http404
+from django.core.paginator import InvalidPage, Paginator
+from django.views.generic import (
+    ListView,
+    CreateView,
+    DeleteView,
+    DetailView,
+    UpdateView,
+)
+from django.urls import reverse_lazy, reverse
 
 from .models import Product, Category
 from .forms import ProductForm, CategoryForm
@@ -12,147 +19,59 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "index.html")
 
 
-def all_products(request: HttpRequest) -> HttpResponse:
-    products = Product.objects.all().values()
-
-    return render(
-        request=request,
-        template_name="all_products.html",
-        context={"products": products},
-    )
+class ProductListView(ListView):
+    model = Product
+    paginate_by = 10
 
 
-def product_details(request: HttpRequest, id: int) -> HttpResponse:
-    product = Product.objects.get(id=id)
-
-    return render(
-        request=request,
-        template_name="product_details.html",
-        context={"product": product},
-    )
+class ProductDetailView(DetailView):
+    model = Product
 
 
-def product_delete(request: HttpRequest, id: int) -> HttpResponse:
-    product = Product.objects.get(id=id)
-
-    if request.method == "POST":
-        product.delete()
-        return redirect("products")
-
-    return render(
-        request=request,
-        template_name="product_delete.html",
-        context={"product": product},
-    )
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("products")
 
 
-def product_update(request: HttpRequest, id: int) -> HttpResponse:
-
-    product = Product.objects.get(id=id)
-    error = ""
-
-    if request.method == "POST":
-        form = ProductForm(request.POST, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect("products")
-        else:
-            error = "Форма была неверной"
-    else:
-        form = ProductForm(instance=product)
-
-    context = {"form": form, "error": error}
-
-    return render(request=request, template_name="product_update.html", context=context)
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy("products")
+    template_name = "flow_meter/product_update.html"
 
 
-def product_add(request: HttpRequest) -> HttpResponse:
-    error = ""
-    if request.method == "POST":
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("products")
-        else:
-            error = "Форма была неверной"
-
-    form = ProductForm()
-    context = {"form": form, "error": error}
-
-    return render(request=request, template_name="product_add.html", context=context)
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy("products")
 
 
 def about(request: HttpRequest) -> HttpResponse:
     return render(request, "about.html")
 
 
-def all_categories(request: HttpRequest) -> HttpResponse:
-    categories = Category.objects.all().values()
-
-    return render(
-        request=request,
-        template_name="all_categories.html",
-        context={"categories": categories},
-    )
+class CategoryListView(ListView):
+    model = Category
+    paginate_by = 10
 
 
-def category_details(request: HttpRequest, id: int) -> HttpResponse:
-    category = Category.objects.get(id=id)
-
-    return render(
-        request=request,
-        template_name="category_details.html",
-        context={"category": category},
-    )
+class CategoryDetailView(DetailView):
+    model = Category
 
 
-def category_delete(request: HttpRequest, id: int) -> HttpResponse:
-    category = Category.objects.get(id=id)
-
-    if request.method == "POST":
-        category.delete()
-        return redirect("categories")
-
-    return render(
-        request=request,
-        template_name="category_delete.html",
-        context={"category": category},
-    )
+class CategoryCreateView(CreateView):
+    model = Category
+    form_class = CategoryForm
+    success_url = reverse_lazy("categories")
 
 
-def category_update(request: HttpRequest, id: int) -> HttpResponse:
-
-    category = Category.objects.get(id=id)
-    error = ""
-
-    if request.method == "POST":
-        form = CategoryForm(request.POST, instance=category)
-        if form.is_valid():
-            form.save()
-            return redirect("categories")
-        else:
-            error = "Форма была неверной"
-    else:
-        form = CategoryForm(instance=category)
-
-    context = {"form": form, "error": error}
-
-    return render(
-        request=request, template_name="category_update.html", context=context
-    )
+class CategoryUpdateView(UpdateView):
+    model = Category
+    form_class = CategoryForm
+    success_url = reverse_lazy("categories")
+    template_name = "flow_meter/category_update.html"
 
 
-def category_add(request: HttpRequest) -> HttpResponse:
-    error = ""
-    if request.method == "POST":
-        form = CategoryForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("categories")
-        else:
-            error = "Форма была неверной"
-
-    form = CategoryForm()
-    context = {"form": form, "error": error}
-
-    return render(request=request, template_name="category_add.html", context=context)
+class CategoryDeleteView(DeleteView):
+    model = Category
+    success_url = reverse_lazy("categories")

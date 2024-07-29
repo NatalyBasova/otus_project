@@ -12,7 +12,7 @@
     <th>Количество</th> 
     <th>Цена</th>
   </tr>
-  {% for product in products %}
+  {% for product in product_list %}
    <tr>
     <td><a href="details/{{ product.id }}">{{ product.name }}</a></td>
     <td>{{ product.quantity }}</td>
