@@ -32,7 +32,7 @@ class Product(models.Model):
         null=True,
         blank=True,
     )
-    category = models.TextField(max_length=12, null=True, blank=True)
+    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
