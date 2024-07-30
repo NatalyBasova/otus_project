@@ -11,7 +11,7 @@
 <form method="post">
     {{ csrf_input }}
     <div class="form-group">
-        {{ form.name }}
+        {{ form.as_table() }}
     </div><br>
     <button type="submit" class="btn btn-success">Добавить категорию</button>
 </form>

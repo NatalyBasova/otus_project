@@ -1,15 +1,13 @@
 from django.db import models
 
 
-
 class Category(models.Model):
-    name = models.CharField(max_length=200, db_index=True)
-    
+    name = models.CharField(max_length=200, verbose_name="Категория", db_index=True)
 
     class Meta:
-        ordering = ('name',)
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        ordering = ("name",)
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
 
     def __str__(self):
         return self.name
@@ -32,7 +30,9 @@ class Product(models.Model):
         null=True,
         blank=True,
     )
-    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        "Category", on_delete=models.SET_NULL, verbose_name="Категория", null=True
+    )
 
     def __str__(self):
         return self.name
