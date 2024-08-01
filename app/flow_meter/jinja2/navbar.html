@@ -4,4 +4,19 @@
     <li><a href="{{ url('products') }}">Продукты</a></li>
     <li><a href="{{ url('categories') }}">Категории</a></li>
   </ul>
+
+  <ul class="sidebar-nav">
+    {% if user.is_authenticated %}
+     <li>User: {{ user.get_username() }}</li>
+     <li>
+       <form id="logout-form" method="post" action="{{ url('logout') }}">
+        {{ csrf_input }}
+         <button type="submit" class="btn btn-link">Logout</button>
+       </form>
+    </li>
+   {% else %}
+     <li><a href="{{ url('login') }}">Login</a></li>
+   {% endif %}
+  </ul>
+
 {% endblock %}

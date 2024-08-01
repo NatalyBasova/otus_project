@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "flow_meter",
-    "users",
 ]
 
 MIDDLEWARE = [
@@ -64,6 +63,9 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "environment": "flow_meter.jinja2.environment",
+            "context_processors": [
+                "django.contrib.auth.context_processors.auth",    
+            ],
         },
     },
     {
@@ -132,10 +134,10 @@ USE_TZ = True
 STATIC_URL = "static/"
 # STATIC_ROOT = os.path.join(BASE_DIR, "flow_meter/")
 
-AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'users.User'
 
-LOGIN_URL = '/users/login/'
-LOGOUT_REDIRECT_URL = '/users/login/'
+# LOGIN_URL = '/users/login/'
+LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
 # Default primary key field type
