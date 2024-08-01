@@ -64,7 +64,7 @@ TEMPLATES = [
         "OPTIONS": {
             "environment": "flow_meter.jinja2.environment",
             "context_processors": [
-                "django.contrib.auth.context_processors.auth",    
+                "django.contrib.auth.context_processors.auth",
             ],
         },
     },
@@ -137,8 +137,8 @@ STATIC_URL = "static/"
 # AUTH_USER_MODEL = 'users.User'
 
 # LOGIN_URL = '/users/login/'
-LOGOUT_REDIRECT_URL = '/'
-LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
