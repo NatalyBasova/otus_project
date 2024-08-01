@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Вход на сайт</title>
+<meta name="description" content="Login" />
+{% endblock %}
+
+{% block content %}
+<form class="form" method="post">
+    {{ csrf_input }}
+    {{ form.as_p() }}
+
+    <button class="btn btn-primary" type="submit">Войти</button>
+</form>
+{% endblock %}
