@@ -14,7 +14,7 @@ from django.urls import reverse_lazy, reverse
 from .models import Product, Category
 from .forms import ProductForm, CategoryForm
 
-from django.contrib.auth.mixins import PermissionRequiredMixin
+
 from django.contrib.auth.decorators import login_required, permission_required
 
 
@@ -75,7 +75,6 @@ class CategoryUpdateView(UpdateView):
     template_name = "flow_meter/category_update.html"
 
 
-class CategoryDeleteView(PermissionRequiredMixin, DeleteView):
+class CategoryDeleteView(DeleteView):
     model = Category
     success_url = reverse_lazy("categories")
-    permission_required = "flow_meter.delete_category"
