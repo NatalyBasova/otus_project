@@ -4,6 +4,7 @@ from setuptools import setup, find_packages
 install_requires = [
     "Django==5.0.*",
     "Jinja2==3.1.*",
+    "psycopg2",
 ]
 
 # Additional feature sets and their requirements
