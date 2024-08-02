@@ -22,11 +22,16 @@
 
 ```bash
 docker build --pull --tag="webapp" --file Dockerfile .
+docker build --pull --tag="nginx" --file Dockerfile-nginx .
 ```
 
 ## Запуск в Docker
 
-Переменные лежат в файле env. При боевом использовании следует изменить пароль к БД.
+Переменные лежат в файле env. При боевом использовании следует изменить пароль к БД. Для тестов можно выполнить
+
+```bash
+source env
+```
 
 При первом запуске через docker-compose надо подключиться к контейнеру
 

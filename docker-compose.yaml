@@ -16,10 +16,8 @@ services:
   web:
     image: webapp:latest
     container_name: django
-    ports:
-      - "8000:8000"
     volumes:
-      - .:/app
+      - static_volume:/app/app/flow_meter/static
     environment:
       - DEBUG=${DJANGO_DEBUG}
       - SECRET_KEY=${DJANGO_SECRET_KEY}
@@ -30,6 +28,20 @@ services:
       - DATABASE_PORT=${DATABASE_PORT}
     depends_on:
       - postgres
+    expose:
+      - 8000
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - static_volume:/var/www/static
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
 
 volumes:
   pg_data:
+  static_volume:

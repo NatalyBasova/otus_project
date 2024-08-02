@@ -18,5 +18,3 @@ WORKDIR /app/app
 
 # ENTRYPOINT [ "python", "app/manage.py", "runserver", "0.0.0.0:8000" ]
 ENTRYPOINT [ "gunicorn", "app.wsgi:application", "--bind", "0.0.0.0:8000" ]
-
-EXPOSE 8000
