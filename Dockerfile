@@ -1,4 +1,4 @@
-FROM python:3.9-buster
+FROM python:3.10-buster
 
 WORKDIR /app
 
@@ -6,6 +6,6 @@ COPY . .
 
 RUN pip install --no-cache-dir --editable .
 
-ENTRYPOINT [ "webapp" ]
+ENTRYPOINT [ "docker-entrypoint.sh" ]
 
 EXPOSE 8000
