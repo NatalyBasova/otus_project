@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: db
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  web:
+    image: webapp:latest
+    container_name: django
+    volumes:
+      - static_volume:/app/app/flow_meter/static
+    environment:
+      - DEBUG=${DJANGO_DEBUG}
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+    depends_on:
+      - postgres
+    expose:
+      - 8000
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - static_volume:/var/www/static
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
+
+volumes:
+  pg_data:
+  static_volume:

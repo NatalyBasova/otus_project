@@ -1,0 +1,7 @@
+export DATABASE_NAME="django"
+export DATABASE_USER="django"
+export DATABASE_PASSWORD="p@$$wor6"
+export DATABASE_HOST="db"
+export DATABASE_PORT="5432"
+#export DJANGO_SECRET_KEY=""
+export DJANGO_DEBUG="True"
