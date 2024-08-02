@@ -4,7 +4,6 @@ from setuptools import setup, find_packages
 install_requires = [
     "Django==5.0.*",
     "Jinja2==3.1.*",
-    "django-bootstrap-v5==1.0.*",
 ]
 
 # Additional feature sets and their requirements
@@ -33,5 +32,5 @@ setup(
     install_requires=install_requires,
     extras_require=extras_require,
     entry_points={"console_scripts": ["app=app.main:main"]},
-    python_requires=">=3.9",
+    python_requires=">=3.10",
 )
