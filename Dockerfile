@@ -2,6 +2,10 @@ FROM python:3.10-buster
 
 WORKDIR /app
 
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
 COPY . .
 
 RUN pip install --upgrade --no-cache-dir pip \
@@ -10,6 +14,9 @@ RUN pip install --upgrade --no-cache-dir pip \
 
 RUN python app/manage.py collectstatic --noinput
 
-ENTRYPOINT [ "python", "app/manage.py", "runserver", "0.0.0.0:8000" ]
+WORKDIR /app/app
+
+# ENTRYPOINT [ "python", "app/manage.py", "runserver", "0.0.0.0:8000" ]
+ENTRYPOINT [ "gunicorn", "app.wsgi:application", "--bind", "0.0.0.0:8000" ]
 
 EXPOSE 8000
