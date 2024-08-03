@@ -11,5 +11,6 @@ jobs:
       - uses: actions/setup-python@v3
       - run: pip install --upgrade pip
       - run: pip install --editable .
-      - run: pwd
-      - run: ls -a
+      - run: cd app
+      - run: python3 manage.py migrate
+      - run: python3 manage.py test
