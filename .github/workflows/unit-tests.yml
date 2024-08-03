@@ -12,4 +12,4 @@ jobs:
       - run: pip install --upgrade pip
       - run: pip install --editable .
       - run: python3 app/manage.py migrate
-      - run: python3 app/manage.py test flow_meter
+      - run: python3 app/manage.py test flow_meter.tests.test_models
