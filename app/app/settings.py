@@ -92,7 +92,7 @@ WSGI_APPLICATION = "app.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASE_NAME = os.environ.get("DATABASE_NAME", "")
+DATABASE_NAME = os.environ.get("DATABASE_NAME", "./db.sqlite3")
 DATABASE_USER = os.environ.get("DATABASE_USER", "")
 DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD", "")
 DATABASE_HOST = os.environ.get("DATABASE_HOST", "127.0.0.1")
@@ -103,7 +103,7 @@ DB_ENGINE = os.environ.get("DJANGO_DB_ENGINE", "django.db.backends.sqlite3")
 DATABASES = {
     "default": {
         "ENGINE": DB_ENGINE,
-        # for sqlite3 pass DATABASE_NAME="./db.sqlite3""
+        # for PG pass DATABASE_NAME="some_pg_database"
         "NAME": DATABASE_NAME,
         "USER": DATABASE_USER,
         "PASSWORD": DATABASE_PASSWORD,
